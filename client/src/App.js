@@ -48,6 +48,7 @@ class App extends Component {
   render(){
     const { classes } = this.props;
     return (
+      // <div>
       <Paper className={classes.root}>
         <Table className={classes.table}>
           <TableHead>
@@ -79,7 +80,7 @@ class App extends Component {
         </TableBody>
       </Table>
       </Paper>
-
+      // </div>
     // <div>
     //   <Customer
     //   id={customers[0].id}
