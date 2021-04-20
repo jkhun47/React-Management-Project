@@ -19,32 +19,48 @@ const styles = theme => ({
   }
 })
 
-const customers = [{
-  'id' : 1,
-  'image' : 'https://placeimg.com/64/64/1',
-  'name' : '홍길남',
-  'birthday' : '961222',
-  'gender' : '남자',
-  'job' : '대학생'
-},
-{
-  'id' : 2,
-  'image' : 'https://placeimg.com/64/64/2',
-  'name' : '홍길민',
-  'birthday' : '971202',
-  'gender' : '남자',
-  'job' : '알바'
-},
-{
-  'id' : 3,
-  'image' : 'https://placeimg.com/64/64/3',
-  'name' : '홍길현',
-  'birthday' : '941222',
-  'gender' : '남자',
-  'job' : '회사원'
-}]
+// const customers = [{
+//   'id' : 1,
+//   'image' : 'https://placeimg.com/64/64/1',
+//   'name' : '홍길남',
+//   'birthday' : '961222',
+//   'gender' : '남자',
+//   'job' : '대학생'
+// },
+// {
+//   'id' : 2,
+//   'image' : 'https://placeimg.com/64/64/2',
+//   'name' : '홍길민',
+//   'birthday' : '971202',
+//   'gender' : '남자',
+//   'job' : '알바'
+// },
+// {
+//   'id' : 3,
+//   'image' : 'https://placeimg.com/64/64/3',
+//   'name' : '홍길현',
+//   'birthday' : '941222',
+//   'gender' : '남자',
+//   'job' : '회사원'
+// }]
 
 class App extends Component {
+state = {
+  customers: ""
+}
+
+componentDidMount(){
+  this.callApi()
+  .then(res => this.setState({customers: res}))
+  .catch(err => console.log(err));
+}
+
+callApi = async() => {
+  const response = await fetch('/api/customers');
+  const body = await response.json();
+  return body;
+}
+
   render(){
     const { classes } = this.props;
     return (
@@ -63,7 +79,7 @@ class App extends Component {
           </TableHead>
           <TableBody>
           {
-          customers.map(c => {
+          this.state.customers ? this.state.customers.map(c => {
             return (
               <Customer
                 key={c.id}
@@ -76,7 +92,7 @@ class App extends Component {
               />
               );
             })
-          }
+           : ""}
         </TableBody>
       </Table>
       </Paper>

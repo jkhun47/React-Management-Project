@@ -12,7 +12,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "concurrently": "6.0.2"
+    "concurrently": "^6.0.2"
   },
   "main": "server.js",
   "repository": {
