@@ -1,5 +1,6 @@
 import Customer from './components/Customer';
 import CustomerAdd from './components/CustomerAdd';
+import CustomerDelete from './components/CustomerDelete';
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -106,6 +107,7 @@ progress = () => {
                 <TableCell>생년월일</TableCell>
                 <TableCell>성별</TableCell>
                 <TableCell>직업</TableCell>
+                <TableCell>설정</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -113,6 +115,7 @@ progress = () => {
             this.state.customers ? this.state.customers.map(c => {
               return (
                 <Customer
+                  stateRefresh={this.stateRefresh}
                   key={c.id}
                   id={c.id}
                   image={c.image}
